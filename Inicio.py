@@ -72,12 +72,12 @@ def Preenche():
     return
 
 def alt():
-    planilha['Planilha1'][int(IdAltera.get())][1] = d1a
-    planilha['Planilha1'][int(IdAltera.get())][2] = d2a
-    planilha['Planilha1'][int(IdAltera.get())][3] = d3a
-    planilha['Planilha1'][int(IdAltera.get())][4] = d4a
-    planilha['Planilha1'][int(IdAltera.get())][5] = d5a
-    # save_data("tabela.ods", planilha)
+    planilha['Planilha1'][int(IdAltera.get())][1] = d1a.get()
+    planilha['Planilha1'][int(IdAltera.get())][2] = d2a.get()
+    planilha['Planilha1'][int(IdAltera.get())][3] = d3a.get()
+    planilha['Planilha1'][int(IdAltera.get())][4] = d4a.get()
+    planilha['Planilha1'][int(IdAltera.get())][5] = d5a.get()
+    save_data("tabela.ods", planilha)
 
 def altera():
     janelaAltera = Tk()
