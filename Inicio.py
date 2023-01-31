@@ -159,6 +159,7 @@ def alterar():
 
 def remov():
     planilha['Planilha1'].pop(int(IdRemove.get()))
+    save_data("tabela.ods", planilha)
 
 def remover():
     janelaRemover = Tk()
