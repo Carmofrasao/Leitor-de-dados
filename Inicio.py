@@ -81,14 +81,14 @@ def Preenche():
     return
 
 def alt():
-    planilha['Planilha1'][int(IdAltera.get())][1] = d1a.get()
-    planilha['Planilha1'][int(IdAltera.get())][2] = d2a.get()
-    planilha['Planilha1'][int(IdAltera.get())][3] = d3a.get()
-    planilha['Planilha1'][int(IdAltera.get())][4] = d4a.get()
-    planilha['Planilha1'][int(IdAltera.get())][5] = d5a.get()
+    planilha['Planilha1'][int(IdAltera.get())] = [IdAltera.get(), d1a.get(), d2a.get(), d3a.get(), d4a.get(), d5a.get()]
+
     save_data("tabela.ods", planilha)
+    janelaAltera.destroy()
+    janelaAlterar.destroy()
 
 def altera():
+    global janelaAltera
     janelaAltera = Tk()
     janelaAltera.title("BioDados")
 
@@ -149,6 +149,7 @@ def altera():
     return
 
 def alterar():
+    global janelaAlterar
     janelaAlterar = Tk()
     janelaAlterar.title("BioDados")
 
@@ -168,9 +169,13 @@ def alterar():
 
 def remov():
     planilha['Planilha1'].pop(int(IdRemove.get()))
+    for i in range(len(planilha['Planilha1'])):
+        planilha['Planilha1'][i][0] = i
     save_data("tabela.ods", planilha)
+    janelaRemover.destroy()
 
 def remover():
+    global janelaRemover
     janelaRemover = Tk()
     janelaRemover.title("BioDados")
 
@@ -188,13 +193,19 @@ def remover():
     janelaRemover.mainloop()
     return
 
+def exvis():
+    janelaVisu.destroy()
+
 def visualizar():
+    global janelaVisu
     janelaVisu = Tk()
     janelaVisu.title("BioDados")
     cabecalho = Label(janelaVisu, text=planilha['Planilha1'][0])
     cabecalho.grid(column=0, row=0, padx=10, pady=10)
     texto = Label(janelaVisu, text=planilha['Planilha1'][int(IdBusca.get())])
     texto.grid(column=0, row=1, padx=10, pady=10)
+    Visu = Button(janelaVisu, text="Ok", command=exvis)
+    Visu.grid(column=0, row=2, padx=10, pady=10)
     janelaVisu.mainloop()
     return
 
@@ -203,15 +214,19 @@ def buscar():
     janelaBusca.title("BioDados")
 
     IdLabel = Label(janelaBusca,text="Digite o Id:", font="Arial")
-    IdLabel.pack(side=TOP)
+    IdLabel.grid(column=0, row=0, padx=10, pady=10)
     global IdBusca
     IdBusca = Entry(janelaBusca)
     IdBusca["width"] = 25
     IdBusca["font"] = "Arial"
-    IdBusca.pack(side=LEFT)
-    
+    IdBusca.grid(column=0, row=1, padx=10, pady=10)
+
     Visu = Button(janelaBusca, text="visualizar", command=visualizar)
-    Visu.pack(side=BOTTOM)
+    Visu.grid(column=0, row=2, padx=10, pady=10)
+    
+    for i in range(len(planilha['Planilha1'])):
+        texto = Label(janelaBusca, text=planilha['Planilha1'][i], font="Arial")
+        texto.grid(column=0, row=4+i, padx=10, pady=10)
 
     janelaBusca.mainloop()
     return 
