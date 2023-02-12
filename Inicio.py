@@ -3,17 +3,26 @@ from pyexcel_ods3 import get_data, save_data
 
 from tkinter import *
 
+# para gerar o executavel (tentarei deixar ele pronto, mas nunca se sabe):
+# talvez precise instalar o conda
+# https://repo.anaconda.com/archive/Anaconda3-2022.10-Linux-x86_64.sh
+# bash ~/Downloads/Anaconda3-2022.10-Linux-x86_64.sh
+# conda install -c conda-forge pyinstaller
+# pyinstaller --onefile -w Inicio.py
+
 planilha = get_data("tabela.ods")
 
-def incere():
+def insere():
 
     dado = [d0, d1.get(), d2.get(), d3.get(), d4.get(), d5.get()]
     planilha['Planilha1'] = planilha['Planilha1'] + [dado]
     save_data("tabela.ods", planilha)
+    janelaIncerir.destroy()
     return
 
 def Preenche():
 
+    global janelaIncerir
     janelaIncerir = Tk()
     janelaIncerir.title("BioDados")
 
@@ -65,7 +74,7 @@ def Preenche():
     d5["font"] = "Arial"
     d5.grid(column=1, row=4, padx=10, pady=10)
 
-    Inc = Button(janelaIncerir, text="Incerir", command=incere)
+    Inc = Button(janelaIncerir, text="Incerir", command=insere)
     Inc.grid(column=0, row=5, padx=10, pady=10)
 
     janelaIncerir.mainloop()
