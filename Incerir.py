@@ -1,4 +1,4 @@
-from tkinter import *
+from tkinter import Toplevel, Button, Label, Entry
 from Planilha import *
 
 def insere():
@@ -12,7 +12,7 @@ def insere():
 def Preenche():
 
     global janelaIncerir
-    janelaIncerir = Tk()
+    janelaIncerir = Toplevel()
     janelaIncerir.title("BioDados")
 
     global d0
@@ -66,5 +66,4 @@ def Preenche():
     Inc = Button(janelaIncerir, text="Incerir", command=insere)
     Inc.grid(column=1, row=5, padx=10, pady=10)
 
-    janelaIncerir.mainloop()
     return

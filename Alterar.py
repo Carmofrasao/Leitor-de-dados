@@ -1,4 +1,4 @@
-from tkinter import Tk, Button, Label, Entry
+from tkinter import Toplevel, Button, Label, Entry
 from Planilha import *
 
 def alt():
@@ -10,7 +10,7 @@ def alt():
 
 def altera():
     global janelaAltera
-    janelaAltera = Tk()
+    janelaAltera = Toplevel()
     janelaAltera.title("BioDados")
 
     dado1Label = Label(janelaAltera,text="Digite o Dado1:", font=("Courier", 16, "italic"))
@@ -66,12 +66,11 @@ def altera():
     Inc = Button(janelaAltera, text="Alterar", command=alt)
     Inc.grid(column=1, row=5, padx=10, pady=10)
 
-    janelaAltera.mainloop()
     return
 
 def alterar():
     global janelaAlterar
-    janelaAlterar = Tk()
+    janelaAlterar = Toplevel()
     janelaAlterar.title("BioDados")
 
     IdLabel = Label(janelaAlterar,text="Digite o Id:", font=("Courier", 16, "italic"))
@@ -86,5 +85,4 @@ def alterar():
     Remo = Button(janelaAlterar, text="Alterar", command=altera)
     Remo.grid(column=0, row=2, padx=10, pady=10)
 
-    janelaAlterar.mainloop()
     return
